@@ -3,9 +3,7 @@ Chapter 01 – Inception
 Q. What is Emmet?
 
 Ans. Emmet allows to type shortcuts that are expanded in full piece of code. For ex – If we write 
-li * 3 it will give :<li></li>
-<li></li>
-<li></li>
+li * 3 it will give :<li></li> <li></li> <li></li>
 
 Q. Difference between a Library and Framework?
 
