@@ -57,7 +57,7 @@ Ans. HMR (Hot Module Replacement)
  
  Q. What is the difference between `package.json` and `package-lock.json`?
  Ans. package.json is a versioning file used to install multiple packages in the project. It records important metadata about the project.
-      package.lock.json is created for locking the dependency with the installed version. It will install the exact latest version of that package in your                 application and save it in package.json.
+      package.lock.json is created for locking the dependency with the installed version. It will install the exact latest version of that package in your                 application and save it in package.json. The version in package-lock.json file is the exact version we are using in our project.
  
 Q. Why should I not modify `package-lock.json`?
 Ans. package-lock.json should never be modified, because package-lock.json is the only file which keep track of the exact versioning
