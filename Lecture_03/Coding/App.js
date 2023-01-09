@@ -46,7 +46,7 @@ const Title = () => (
 );
 
 //React Element
-const Title2 = (
+const title2 = (
     <h1>This is a React Element</h1>
 )
 
@@ -58,7 +58,7 @@ const Header = () => {
             {/* {Title()} */}
 
             {/* Calling the React Element */}
-            {Title2}
+            {title2}
 
 
             {/*  Composition of Component(Adding Component inside another component) */}
