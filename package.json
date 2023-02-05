@@ -1,0 +1,19 @@
+{
+  "name": "food-villa",
+  "version": "1.0.0",
+  "description": "This is a food app",
+  "main": "App.js",
+  "scripts": {
+    "test": "Jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhay0106/Namaste-React.git"
+  },
+  "author": "Abhay Kochhar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhay0106/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/abhay0106/Namaste-React#readme"
+}
