@@ -1,43 +1,38 @@
-import React from "react"
-import { Outlet } from "react-router-dom"
-import Profile from "./ProfileClass"
+import User from "./User";
+import UserClass from "./UserClass";
+import { Component } from "react";
+import UserContext from "../utils/UserContext";
 
-// const About2 = () => {
+class About extends Component {
+  constructor(props) {
+    super(props);
 
-//     return (
-//         <div>
-//             <h1>About Us Page</h1>
-//             <p>This is a Namaste React live course Chapter 07 - Finding the Path
-//             </p>
-//             <Outlet />
+    //console.log("Parent Constructor");
+  }
 
-//             <Profile name={"Abhay"} xyz={"abc"} />
-//         </div>
+  componentDidMount() {
+    //console.log("Parent Component Did Mount");
+  }
 
-//     )
-// }
+  render() {
+    //console.log("Parent Render");
 
-class About extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log("Parent - Constructor")
-    }
-
-    componentDidMount(){
-        console.log("Parent - componentDidMount")
-    }
-
-    render() {
-        console.log("Parent - render")
-        return (
-            <div>
-                <h1>About Us Page</h1>
-                <p>This is a Namaste React live course Chapter 07 - Finding the Path
-                </p>
-                <Outlet />
-                <Profile name={"First Child"} xyz={"abc"} />
-            </div>
-        )
-    }
+    return (
+      <div>
+        <h1>About Class Component</h1>
+        <div>
+          LoggedIn User
+          <UserContext.Consumer>
+            {({ loggedInUser }) => (
+              <h1 className="text-xl font-bold">{loggedInUser}</h1>
+            )}
+          </UserContext.Consumer>
+        </div>
+        <h2>This is Namaste React Web Series</h2>
+        <UserClass name={"First"} location={"Dehradun Class"} />
+      </div>
+    );
+  }
 }
-export default About
+
+export default About;

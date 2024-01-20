@@ -1,39 +1,53 @@
-import { useEffect,useState } from "react";
-import { useParams } from "react-router-dom";
-import { IMG_CDN_URL } from "../constants";
-import useRestaurant from "../utils/useRestaurant";
 import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
-    // const params = useParams();
-    // const {resId}  = params
-    const {resId} = useParams()
-    const restaurant = useRestaurant(resId);
+  const { resId } = useParams();
 
-    return !restaurant ? (
-<Shimmer/>
-):(
-        <div className="menu">
-            <div>
-                <h1>Restaurant id : {resId}</h1>
-                <h2>{restaurant.name}</h2>
-                <img src = {IMG_CDN_URL + restaurant.cloudinaryImageId} />
-                <h3>{restaurant.area}</h3>
-                <h3>{restaurant.city}</h3>
-                <h3>{restaurant.costForTwo}</h3>
-                <h3>{restaurant.avgRating}</h3>
-            </div>
-            <div>
-            <h1>Menu</h1>
-        <ul>
-          {Object.values(restaurant?.menu?.items).map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>            </div>
-            
-        </div>
+  const dummy = "Dummy Data";
 
-    )
-}
+  const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(null);
+
+  if (resInfo === null) return <Shimmer />;
+
+  const { name, cuisines, costForTwoMessage } =
+    resInfo?.cards[0]?.card?.card?.info;
+
+  const { itemCards } =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.["card"]?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  //console.log(categories);
+
+  return (
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwoMessage}
+      </p>
+      {/* categories accordions */}
+      {categories.map((category, index) => (
+        // controlled component
+        <RestaurantCategory
+          key={category?.card?.card.title}
+          data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default RestaurantMenu;
